@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery Indicator Icon 9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-20 17:54-0400\n"
+"POT-Creation-Date: 2026-04-20 18:51-0400\n"
 "Last-Translator: Ilham Adi Setiawan <ilhamsetiawan@duck.com>\n"
 "Language-Team: Indoneia <LL@li.org>\n"
 "Language: id\n"
@@ -15,87 +15,87 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/prefs.js:27
+#: src/prefs.js:28
 msgid "Battery status icon style"
 msgstr "Gaya ikon status baterai"
 
-#: src/prefs.js:28
+#: src/prefs.js:29
 msgid "Bold"
 msgstr "Tebal"
 
-#: src/prefs.js:29
+#: src/prefs.js:30
 msgid "Slim"
 msgstr "Tipis"
 
-#: src/prefs.js:30
+#: src/prefs.js:31
 msgid "Plump"
 msgstr "Sintal"
 
-#: src/prefs.js:31
+#: src/prefs.js:32
 msgid "Plain"
 msgstr "Polos"
 
-#: src/prefs.js:32
+#: src/prefs.js:33
 msgid "Circle"
 msgstr "Lingkaran"
 
-#: src/prefs.js:33
+#: src/prefs.js:34
 msgid "Text"
 msgstr "Teks"
 
-#: src/prefs.js:36
+#: src/prefs.js:37
 msgid "Battery percentage text"
 msgstr "Teks Persentase baterai"
 
-#: src/prefs.js:37
+#: src/prefs.js:38
 msgid "Hidden"
 msgstr "Tersembunyi"
 
-#: src/prefs.js:38
+#: src/prefs.js:39
 msgid "Inside the icon"
 msgstr "Didalam ikon"
 
-#: src/prefs.js:39
+#: src/prefs.js:40
 msgid "Inside the icon (vertical)"
 msgstr "Didalam ikon (vertikal)"
 
-#: src/prefs.js:40
+#: src/prefs.js:41
 msgid "Next to the icon"
 msgstr "Disebelah ikon"
 
-#: src/prefs.js:45
+#: src/prefs.js:46
 msgid "Horizontal scale"
 msgstr "Skala horizontal"
 
-#: src/prefs.js:49
+#: src/prefs.js:50
 msgid "Orientation"
 msgstr "Orientasi"
 
-#: src/prefs.js:50
+#: src/prefs.js:51
 msgid "Vertical"
 msgstr "Vertikal"
 
-#: src/prefs.js:51
+#: src/prefs.js:52
 msgid "Horizontal"
 msgstr "Horizontal"
 
-#: src/prefs.js:56
+#: src/prefs.js:57
 msgid "Dynamic circle color"
 msgstr ""
 
-#: src/prefs.js:59
+#: src/prefs.js:60
 msgid "Circle wheel color"
 msgstr ""
 
-#: src/prefs.js:60
+#: src/prefs.js:61
 msgid "Empty wheel color (optional)"
 msgstr ""
 
-#: src/prefs.js:61
+#: src/prefs.js:62
 msgid "Low battery color"
 msgstr ""
 
-#: src/prefs.js:62
+#: src/prefs.js:63
 msgid "Charging color"
 msgstr ""
 
@@ -134,6 +134,6 @@ msgstr ""
 msgid "Low battery color for the circle icon wheel"
 msgstr ""
 
-#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:56
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:55
 msgid "Charging color for the circle icon wheel"
 msgstr ""

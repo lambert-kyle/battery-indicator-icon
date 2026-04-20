@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import Adw from 'gi://Adw';
+import Gdk from 'gi://Gdk';
 import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 import GObject from 'gi://GObject';
@@ -230,13 +231,35 @@ const BatIconPrefsPage = GObject.registerClass(
         text: this._settings.get_string(prop),
         width_chars: 10,
       });
+
+      const swatch = new Gtk.Box({
+        valign: Gtk.Align.CENTER,
+        widthRequest: 24,
+        heightRequest: 24,
+      });
+      const swatchProvider = new Gtk.CssProvider();
+      swatch.get_style_context().add_provider(swatchProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+      const updateSwatch = colorStr => {
+        const rgba = new Gdk.RGBA();
+        if (colorStr && rgba.parse(colorStr)) {
+          swatchProvider.load_from_string(`* { background-color: ${colorStr}; border-radius: 4px; }`);
+        } else {
+          swatchProvider.load_from_string(`* { background-color: transparent; border: 1px dashed alpha(currentColor, 0.3); border-radius: 4px; }`);
+        }
+      };
+
+      updateSwatch(entry.get_text());
+
       const row = new Adw.ActionRow({
         title,
         activatableWidget: entry,
       });
       row.add_suffix(entry);
+      row.add_suffix(swatch);
       this._rows[prop] = [row, entry];
       entry.connect('changed', () => {
+        updateSwatch(entry.get_text());
         if (this.__syncing) {
           return;
         }
