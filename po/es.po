@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery Indicator Icon 9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-17 12:53+0200\n"
+"POT-Creation-Date: 2026-04-20 17:54-0400\n"
 "PO-Revision-Date: 2024-02-28 15:22+(-0600)\n"
 "Last-Translator: Fernando Morales <summus_imperator@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,13 +80,38 @@ msgstr "Vertical"
 msgid "Horizontal"
 msgstr "Horizontal"
 
+#: src/prefs.js:56
+msgid "Dynamic circle color"
+msgstr ""
+
+#: src/prefs.js:59
+msgid "Circle wheel color"
+msgstr ""
+
+#: src/prefs.js:60
+msgid "Empty wheel color (optional)"
+msgstr ""
+
+#: src/prefs.js:61
+msgid "Low battery color"
+msgstr ""
+
+#: src/prefs.js:62
+msgid "Charging color"
+msgstr ""
+
 #: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:14
 msgid "Battery status icon style (bold, slim, plain, circle, hidden)"
-msgstr "Estilo del icono de estado de la batería (Negrita, Delgado, Plano, Circular, Oculto)"
+msgstr ""
+"Estilo del icono de estado de la batería (Negrita, Delgado, Plano, Circular, "
+"Oculto)"
 
 #: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:19
-msgid "Show battery percentage text in icon (hidden: 0, horizontal: 1, vertical: 2)"
-msgstr "Mostrar texto de porcentaje de batería en el icono (oculto: 0, horizontal: 1, vertical: 2)"
+msgid ""
+"Show battery percentage text in icon (hidden: 0, horizontal: 1, vertical: 2)"
+msgstr ""
+"Mostrar texto de porcentaje de batería en el icono (oculto: 0, horizontal: "
+"1, vertical: 2)"
 
 #: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:24
 msgid "Icon orientation (vertical, horizontal)"
@@ -95,3 +120,23 @@ msgstr "Orientación del icono (vertical, horizontal)"
 #: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:30
 msgid "Icon scale as aspect ratio width/height"
 msgstr "Escala de iconos como relación de aspecto en anchura/altura"
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:35
+msgid "Enable dynamic color for circle icon style"
+msgstr ""
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:40
+msgid "Default color for the circle icon wheel"
+msgstr ""
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:45
+msgid "Empty color for the circle icon wheel (leave empty for default)"
+msgstr ""
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:50
+msgid "Low battery color for the circle icon wheel"
+msgstr ""
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:56
+msgid "Charging color for the circle icon wheel"
+msgstr ""

@@ -100,6 +100,11 @@ export default class BatteryIndicatorIcon extends Extension {
             : BInner.EMPTY,
           visible: statusStyleStr !== 'hidden',
           vertical: settings.get_string('icon-orientation') === 'vertical',
+          dynamicCircleColor: settings.get_boolean('dynamic-circle-color'),
+          circleColor: settings.get_string('circle-color'),
+          circleEmptyColor: settings.get_string('circle-empty-color'),
+          circleLowColor: settings.get_string('circle-low-color'),
+          circleChargeColor: settings.get_string('circle-charge-color'),
         };
         sysIndicator._drawicon.set(props);
         powerToggle._drawicon.set({
@@ -168,6 +173,7 @@ export default class BatteryIndicatorIcon extends Extension {
       'show-icon-text',
       'icon-scale',
       'icon-orientation',
+      'dynamic-circle-color',
     ].map(prop => settings.connect(`changed::${prop}`, update.bind(this)));
 
     update();

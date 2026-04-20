@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery Indicator Icon 9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 16:05+0200\n"
+"POT-Creation-Date: 2026-04-20 17:54-0400\n"
 "Last-Translator: Ilham Adi Setiawan <ilhamsetiawan@duck.com>\n"
 "Language-Team: Indoneia <LL@li.org>\n"
 "Language: id\n"
@@ -79,6 +79,26 @@ msgstr "Vertikal"
 msgid "Horizontal"
 msgstr "Horizontal"
 
+#: src/prefs.js:56
+msgid "Dynamic circle color"
+msgstr ""
+
+#: src/prefs.js:59
+msgid "Circle wheel color"
+msgstr ""
+
+#: src/prefs.js:60
+msgid "Empty wheel color (optional)"
+msgstr ""
+
+#: src/prefs.js:61
+msgid "Low battery color"
+msgstr ""
+
+#: src/prefs.js:62
+msgid "Charging color"
+msgstr ""
+
 #: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:14
 msgid "Battery status icon style (bold, slim, plain, circle, hidden)"
 msgstr "Gaya ikon Status baterai (tebal,tipis,polos,Lingkaran,Tersembunyi)"
@@ -97,3 +117,23 @@ msgstr "Posisi Ikon ( vertical , horizontal)"
 #: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:30
 msgid "Icon scale as aspect ratio width/height"
 msgstr "Skala ikon sebagai aspek rasio lebar/tinggi"
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:35
+msgid "Enable dynamic color for circle icon style"
+msgstr ""
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:40
+msgid "Default color for the circle icon wheel"
+msgstr ""
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:45
+msgid "Empty color for the circle icon wheel (leave empty for default)"
+msgstr ""
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:50
+msgid "Low battery color for the circle icon wheel"
+msgstr ""
+
+#: src/schemas/org.gnome.shell.extensions.battery-indicator-icon.gschema.xml:56
+msgid "Charging color for the circle icon wheel"
+msgstr ""

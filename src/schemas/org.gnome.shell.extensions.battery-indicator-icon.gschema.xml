@@ -29,5 +29,30 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <range min="0.1" max="1000"/>
       <summary>Icon scale as aspect ratio width/height</summary>
     </key>
+
+    <key type="b" name="dynamic-circle-color">
+      <default>false</default>
+      <summary>Enable dynamic color for circle icon style</summary>
+    </key>
+
+    <key type="s" name="circle-color">
+      <default>"#00ad76"</default>
+      <summary>Default color for the circle icon wheel</summary>
+    </key>
+
+    <key type="s" name="circle-empty-color">
+      <default>"#202020"</default>
+      <summary>Empty color for the circle icon wheel (leave empty for default)</summary>
+    </key>
+
+    <key type="s" name="circle-low-color">
+      <default>"#ff0000"</default>
+      <summary>Low battery color for the circle icon wheel</summary>
+    </key>
+
+    <key type="s" name="circle-charge-color">
+      <default>"#00ffff"</default>
+      <summary>Charging color for the circle icon wheel</summary>
+    </key>
   </schema>
 </schemalist>

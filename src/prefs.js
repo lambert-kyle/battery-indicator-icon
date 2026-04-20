@@ -51,11 +51,26 @@ const BatIconPrefsPage = GObject.registerClass(
         horizontal: _('Horizontal'),
       });
 
+      this._addToggleRow(
+        'dynamic-circle-color',
+        _('Dynamic circle color')
+      );
+
+      this._addTextRow('circle-color', _('Circle wheel color'));
+      this._addTextRow('circle-empty-color', _('Empty wheel color (optional)'));
+      this._addTextRow('circle-low-color', _('Low battery color'));
+      this._addTextRow('circle-charge-color', _('Charging color'));
+
       this._settingsSignalIds = [
         'status-style',
         'show-battery-percentage',
         'icon-scale',
         'icon-orientation',
+        'dynamic-circle-color',
+        'circle-color',
+        'circle-empty-color',
+        'circle-low-color',
+        'circle-charge-color',
       ].map(prop =>
         this._settings.connect(`changed::${prop}`, this._sync.bind(this))
       );
@@ -104,6 +119,25 @@ const BatIconPrefsPage = GObject.registerClass(
         this._settings.get_double('icon-scale'),
         showIcon
       );
+
+      // Dynamic circle color
+      const [circleRow] = this._rows['dynamic-circle-color'];
+      circleRow.active = this._settings.get_boolean('dynamic-circle-color');
+      const isCircle = styleOpt === 'circle';
+      circleRow.sensitive = showIcon && isCircle;
+
+      // Color text fields
+      ['circle-color', 'circle-empty-color', 'circle-low-color', 'circle-charge-color'].forEach(
+        prop => {
+          const [row, entry] = this._rows[prop];
+          const val = this._settings.get_string(prop);
+          if (entry.get_text() !== val && !entry.has_focus()) {
+            entry.set_text(val);
+          }
+          row.sensitive = showIcon && isCircle && circleRow.active;
+        }
+      );
+
       delete this.__syncing;
       this._updateSettings();
     }
@@ -172,6 +206,42 @@ const BatIconPrefsPage = GObject.registerClass(
       });
       this._rows[prop] = [row, options];
       row.connect('notify::selected', this._updateSettings.bind(this));
+      this._group.add(row);
+    }
+
+    _addToggleRow(prop, title) {
+      const row = new Adw.SwitchRow({
+        title,
+        active: this._settings.get_boolean(prop),
+      });
+      this._rows[prop] = [row];
+      row.connect('notify::active', () => {
+        if (this.__syncing) {
+          return;
+        }
+        this._settings.set_boolean(prop, row.active);
+      });
+      this._group.add(row);
+    }
+
+    _addTextRow(prop, title) {
+      const entry = new Gtk.Entry({
+        valign: Gtk.Align.CENTER,
+        text: this._settings.get_string(prop),
+        width_chars: 10,
+      });
+      const row = new Adw.ActionRow({
+        title,
+        activatableWidget: entry,
+      });
+      row.add_suffix(entry);
+      this._rows[prop] = [row, entry];
+      entry.connect('changed', () => {
+        if (this.__syncing) {
+          return;
+        }
+        this._settings.set_string(prop, entry.get_text());
+      });
       this._group.add(row);
     }
 

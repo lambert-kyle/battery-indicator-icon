@@ -77,6 +77,36 @@ function getWhiteColor() {
   }
 }
 
+function colorFromHex(hex) {
+  let r = 0,
+    g = 0,
+    b = 0;
+  if (hex && (hex.length === 4 || hex.length === 7)) {
+    if (hex.length === 4) {
+      r = parseInt(hex[1] + hex[1], 16);
+      g = parseInt(hex[2] + hex[2], 16);
+      b = parseInt(hex[3] + hex[3], 16);
+    } else {
+      r = parseInt(hex.slice(1, 3), 16);
+      g = parseInt(hex.slice(3, 5), 16);
+      b = parseInt(hex.slice(5, 7), 16);
+    }
+  }
+
+  if (majorShellVersion >= 47) {
+    const c = new Cogl.Color();
+    c.init_from_4f(r / 255.0, g / 255.0, b / 255.0, 1.0);
+    return c;
+  } else {
+    return new Clutter.Color({
+      red: r,
+      green: g,
+      blue: b,
+      alpha: 255,
+    });
+  }
+}
+
 function batteryIconPaint(
   cr,
   buttonPathFunc,
@@ -167,6 +197,41 @@ export const BatteryDrawIcon = GObject.registerClass(
         GObject.ParamFlags.READWRITE,
         true
       ),
+      'dynamic-circle-color': GObject.ParamSpec.boolean(
+        'dynamic-circle-color',
+        'dynamic-circle-color',
+        'dynamic-circle-color',
+        GObject.ParamFlags.READWRITE,
+        false
+      ),
+      'circle-color': GObject.ParamSpec.string(
+        'circle-color',
+        'circle-color',
+        'circle-color',
+        GObject.ParamFlags.READWRITE,
+        '#00ad76'
+      ),
+      'circle-empty-color': GObject.ParamSpec.string(
+        'circle-empty-color',
+        'circle-empty-color',
+        'circle-empty-color',
+        GObject.ParamFlags.READWRITE,
+        '#202020'
+      ),
+      'circle-low-color': GObject.ParamSpec.string(
+        'circle-low-color',
+        'circle-low-color',
+        'circle-low-color',
+        GObject.ParamFlags.READWRITE,
+        '#ff0000'
+      ),
+      'circle-charge-color': GObject.ParamSpec.string(
+        'circle-charge-color',
+        'circle-charge-color',
+        'circle-charge-color',
+        GObject.ParamFlags.READWRITE,
+        '#00ffff'
+      ),
     },
   },
   class BatteryDrawIcon extends St.DrawingArea {
@@ -190,6 +255,11 @@ export const BatteryDrawIcon = GObject.registerClass(
         'notify::percentage',
         'notify::status-style',
         'notify::vertical',
+        'notify::dynamic-circle-color',
+        'notify::circle-color',
+        'notify::circle-empty-color',
+        'notify::circle-low-color',
+        'notify::circle-charge-color',
       ]) {
         this.connect(signal, () => this.queue_repaint());
       }
@@ -312,12 +382,18 @@ export const BatteryDrawIcon = GObject.registerClass(
     }
 
     _circle(cr, style) {
-      const { w, h, strokeWidth, fColor, fillColor, p } = style;
+      const { w, h, strokeWidth, fColor, fillColor, circleEmptyColor, p } =
+        style;
       const size = h;
       const radius = (size - strokeWidth) / 2;
       const [cw, ch] = [w / 2, h / 2];
-      const bColor = fColor.copy();
-      bColor.alpha *= 0.5;
+      let bColor;
+      if (circleEmptyColor) {
+        bColor = colorFromHex(circleEmptyColor);
+      } else {
+        bColor = fColor.copy();
+        bColor.alpha *= 0.5;
+      }
 
       cr.save();
       setContextColor(cr, bColor);
@@ -361,7 +437,7 @@ export const BatteryDrawIcon = GObject.registerClass(
           : iconColors.error;
       const bColor = fColor.copy();
       bColor.alpha *= 0.5;
-      const fillColor =
+      let fillColor =
         plump && charging
           ? iconColors.success
           : this.percentage > 15
@@ -371,6 +447,16 @@ export const BatteryDrawIcon = GObject.registerClass(
           : this.percentage > 5
           ? iconColors.warning
           : iconColors.error;
+
+      if (circle && this.dynamicCircleColor) {
+        if (charging) {
+          fillColor = colorFromHex(this.circleChargeColor);
+        } else if (this.percentage < 20) {
+          fillColor = colorFromHex(this.circleLowColor);
+        } else {
+          fillColor = colorFromHex(this.circleColor);
+        }
+      }
 
       // Draw battery icon
       const cr = this.get_context();
@@ -425,6 +511,7 @@ export const BatteryDrawIcon = GObject.registerClass(
         horizontalBodyHeight,
         fColor: plain ? bColor : fColor,
         fillColor,
+        circleEmptyColor: this.circleEmptyColor,
         content,
         vertical: verticalBattery,
         verticalText: vText,
