@@ -58,7 +58,7 @@ const BatIconPrefsPage = GObject.registerClass(
       );
 
       this._addTextRow('circle-color', _('Circle wheel color'));
-      this._addTextRow('circle-empty-color', _('Empty wheel color (optional)'));
+      this._addTextRow('circle-empty-color', _('Empty wheel color (optional, supports #RRGGBBAA)'));
       this._addTextRow('circle-low-color', _('Low battery color'));
       this._addTextRow('circle-charge-color', _('Charging color'));
 

@@ -41,8 +41,8 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </key>
 
     <key type="s" name="circle-empty-color">
-      <default>"#202020"</default>
-      <summary>Empty color for the circle icon wheel (leave empty for default)</summary>
+      <default>""</default>
+      <summary>Empty color for the circle icon wheel (leave empty for default semi-transparent foreground; supports #RRGGBBAA)</summary>
     </key>
 
     <key type="s" name="circle-low-color">

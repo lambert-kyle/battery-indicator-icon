@@ -80,29 +80,36 @@ function getWhiteColor() {
 function colorFromHex(hex) {
   let r = 0,
     g = 0,
-    b = 0;
-  if (hex && (hex.length === 4 || hex.length === 7)) {
-    if (hex.length === 4) {
+    b = 0,
+    a = 255;
+  if (hex && (hex.length === 4 || hex.length === 5 || hex.length === 7 || hex.length === 9)) {
+    if (hex.length === 4 || hex.length === 5) {
       r = parseInt(hex[1] + hex[1], 16);
       g = parseInt(hex[2] + hex[2], 16);
       b = parseInt(hex[3] + hex[3], 16);
+      if (hex.length === 5) {
+        a = parseInt(hex[4] + hex[4], 16);
+      }
     } else {
       r = parseInt(hex.slice(1, 3), 16);
       g = parseInt(hex.slice(3, 5), 16);
       b = parseInt(hex.slice(5, 7), 16);
+      if (hex.length === 9) {
+        a = parseInt(hex.slice(7, 9), 16);
+      }
     }
   }
 
   if (majorShellVersion >= 47) {
     const c = new Cogl.Color();
-    c.init_from_4f(r / 255.0, g / 255.0, b / 255.0, 1.0);
+    c.init_from_4f(r / 255.0, g / 255.0, b / 255.0, a / 255.0);
     return c;
   } else {
     return new Clutter.Color({
       red: r,
       green: g,
       blue: b,
-      alpha: 255,
+      alpha: a,
     });
   }
 }
@@ -216,7 +223,7 @@ export const BatteryDrawIcon = GObject.registerClass(
         'circle-empty-color',
         'circle-empty-color',
         GObject.ParamFlags.READWRITE,
-        '#202020'
+        ''
       ),
       'circle-low-color': GObject.ParamSpec.string(
         'circle-low-color',
